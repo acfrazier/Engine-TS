@@ -75,6 +75,11 @@ class OnDemand {
             const file = buf.g2();
             const priority = buf.g1();
 
+            // Update-server keepalive.
+            if (archive === 0 && file === 0 && priority === 10) {
+                continue;
+            }
+
             if (archive > 3 || priority > 2) {
                 client.close();
                 return;
